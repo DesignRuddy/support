@@ -22,6 +22,7 @@ const config: GatsbyConfig = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-svgr`,
+    `gatsby-plugin-netlify-cms`,
     // Google Adsense
     {
       resolve: `gatsby-plugin-google-adsense`,

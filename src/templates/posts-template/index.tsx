@@ -27,6 +27,9 @@ const PostsTemplate: React.FC<PostsTemplateProps> = ({ location, pageContext }) 
   );
   const posts = edges.map(({ node }) => new PostClass(node));
 
+  /**
+   * /posts로 back || categories의 value로 이동
+   */
   const onTabIndexChange = (value: number) => {
     if (value === 0) return navigate(`/posts`);
     navigate(`/posts/${categories[value]}`);

@@ -93,7 +93,7 @@ const createPost = ({ createPage, edges }: CreatePagesFuncProps) => {
  * faq Page
  */
 const createFaQ = ({ createPage, edges }: CreatePagesFuncProps) => {
-  const faq = path.resolve(`./src/templates/faq-template/index.tsx`);
+  const helps = path.resolve(`./src/templates/faq-template/index.tsx`);
   const categorySet: Set<string> = new Set();
 
   const edgesWithMap = edges.map((edge) => {
@@ -118,15 +118,15 @@ const createFaQ = ({ createPage, edges }: CreatePagesFuncProps) => {
   const categories = ['전체', ...[...categorySet].sort((a, b) => a.localeCompare(b))];
 
   createPage({
-    path: `/faq`,
-    component: faq,
+    path: `/helps`,
+    component: helps,
     context: { currentCategory: '전체', edges, categories },
   });
 
   categories.forEach((currentCategory) => {
     createPage({
       path: `/faq/${currentCategory}`,
-      component: faq,
+      component: helps,
       context: {
         currentCategory,
         categories,
