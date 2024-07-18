@@ -2,7 +2,7 @@ import { css, Theme } from '@emotion/react';
 
 export const contentMaxWidth = '1048.8px';
 
-export const MOBILE_MAX_WIDTH = 768;
+export const MOBILE_MAX_WIDTH = 690;
 export const MOBILE_MEDIA_QUERY = `screen and (max-width: ${MOBILE_MAX_WIDTH}px)`;
 
 export const lightTheme: Theme = {
@@ -18,6 +18,7 @@ export const lightTheme: Theme = {
     white100: '#FFFFFF',
   },
 };
+
 export const darkTheme: Theme = {
   color: {
     black100: '#e6e6e6',
@@ -50,7 +51,7 @@ export const hoverUnderline = (theme: Theme) => css`
   }
 
   &:hover:after {
-    transform: scaleX(1);
+    /* transform: scaleX(1); */
     transform-origin: bottom left;
     @media ${MOBILE_MEDIA_QUERY} {
       transform: scaleX(0);

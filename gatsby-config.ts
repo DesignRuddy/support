@@ -3,7 +3,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
 import siteMetadata from './gatsby-site-meta-data';
-import { darkTheme, lightTheme } from './src/styles/const';
+import { lightTheme } from './src/styles/const';
 
 const config: GatsbyConfig = {
   flags: {
@@ -87,25 +87,25 @@ const config: GatsbyConfig = {
               }
             `,
             output: '/rss.xml',
-            title: 'jeong-min.com RSS Feed',
+            title: 'support_sosok',
             match: '^/blog/',
             link: 'https://feeds.feedburner.com/gatsby/blog',
           },
         ],
       },
     },
-    {
-      resolve: `gatsby-emotion-dark-mode`,
-      options: {
-        light: lightTheme,
-        dark: darkTheme,
-      },
-    },
+    // {
+    //   resolve: `gatsby-emotion-dark-mode`,
+    //   options: {
+    //     light: lightTheme,
+    //     dark: darkTheme,
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://jeong-min.com/',
-        sitemap: 'https://jeong-min.com/sitemap.xml',
+        host: '',
+        sitemap: '',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },

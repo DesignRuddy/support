@@ -8,12 +8,7 @@ import PostClass from '../models/post';
 import { AllMarkdownRemark, SiteMetadata } from '../type';
 import Footer from '../components/Footer';
 import SubBanner from '../components/SubBanner';
-import styled from '@emotion/styled';
 import HeroSection from '../components/HeroSection';
-
-export const HomePage = styled.div`
-  min-height: 100vh;
-`;
 
 
 type HomeProps = {
@@ -28,35 +23,37 @@ const Home: React.FC<HomeProps> = ({ location, data }) => {
   const posts = data.allMarkdownRemark.edges.map(({ node }) => new PostClass(node));
 
   console.log("post?", posts);
-
-
   const { author, featured } = data.site.siteMetadata;
 
   const recentPosts = posts.slice(0, 3);
   console.log("recentPosts", recentPosts);
 
 
-  const featuredPosts = featured.map(({ title, category }) => {
-    const filteredPosts = posts.filter((post) => post.categories.find((c) => c === category));
-    return { title, posts: filteredPosts };
-  });
+  // const featuredPosts = featured.map(({ title, category }) => {
+  //   const filteredPosts = posts.filter((post) => post.categories.find((c) => c === category));
+  //   return { title, posts: filteredPosts };
+  // });
 
   return (
     <>
-      <HomePage>
-        <Layout location={location}>
-          <Seo title='소속 통합고객센터' />
-          <HeroSection />
-        </Layout>
+      {/* <HomePage> */}
+      <Seo title='소속 통합고객센터' />
+      <Layout location={location}>
+        <HeroSection />
+      </Layout>
 
-        {/* {featuredPosts.map(({ title, posts }, i) => (
+
+      {/* {featuredPosts.map(({ title, posts }, i) => (
             <FeaturedPostColumn key={i} title={title} posts={posts} />
           ))}  */}
+      <Layout>
         <MainBanner author={author} />
+      </Layout>
 
-        <SubBanner />
-        <Footer />
-      </HomePage>
+      <SubBanner />
+
+      <Footer />
+      {/* </HomePage> */}
     </>
   );
 };
@@ -73,7 +70,6 @@ export const pageQuery = graphql`
           frontmatter {
             categories
             title
-            emoji
             date(formatString: "YYYY.MM.DD")
           }
           fields {

@@ -112,11 +112,11 @@ export default {
    */
   remittances: {
     toss: {
-      link: 'https://toss.me/danmin',
-      qrCode: 'toss_qr.svg', // Path to your in the 'assets' folder
+      link: 'https://toss.me/',
+      qrCode: 'toss_qr.svg',   // Path to your in the 'assets' folder
     },
     kakaopay: {
-      qrCode: 'kakao_qr.svg', // Path to your in the 'assets' folder
+      qrCode: 'kakao_qr.svg',   // Path to your in the 'assets' folder
     },
   },
 

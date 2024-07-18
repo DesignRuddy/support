@@ -1,5 +1,4 @@
 import { graphql } from 'gatsby';
-import React from 'react';
 
 import BuyMeACoffee from '@/src/components/BuyMeACoffee';
 import PostHeader from '@/src/components/PostHeader';
@@ -57,7 +56,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY.MM.DD")
         title
         categories
-        emoji
       }
       fields {
         slug
@@ -71,7 +69,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY.MM.DD")
         title
         categories
-        emoji
       }
       fields {
         slug
@@ -85,7 +82,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY.MM.DD")
         title
         categories
-        emoji
       }
       fields {
         slug

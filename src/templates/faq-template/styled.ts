@@ -32,7 +32,6 @@ export const DropDown = styled.div`
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.16);
   width: 100%;
   color: #ccc;
-  padding:
   height: auto;
   font-size: 14px; 
   font-family: SUIT-Regular;

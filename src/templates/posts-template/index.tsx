@@ -46,7 +46,7 @@ const PostsTemplate: React.FC<PostsTemplateProps> = ({ location, pageContext }) 
 
   return (
     <Layout location={location}>
-      <Seo title='소속 통합고객센터 | Posts' />
+      <Seo title='자주묻는질문 - sosok' />
       <S.CategoryWrapper>
         <S.CategoryTitle>{categories[currentTabIndex]}</S.CategoryTitle>
         <S.CategorySubtitle>{`${posts.length} post${posts.length < 2 ? '' : 's'}`}</S.CategorySubtitle>

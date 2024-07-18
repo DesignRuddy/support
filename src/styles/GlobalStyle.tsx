@@ -16,7 +16,7 @@ const style = (theme: Theme) => css`
     overflow-y: scroll;
     font-size: 14px;
     color: ${theme.color.black100};
-    background-color: ${theme.color.gray10};
+    background-color: ${theme.color.white100};
 
     a {
       color: ${theme.color.black100};
@@ -54,7 +54,7 @@ const style = (theme: Theme) => css`
   .scroll-locked {
     overflow: hidden;
   }
-  .header-logo {
+  /* .header-logo {
     a {
       width: 85px;
       height: 25.85px;
@@ -62,7 +62,7 @@ const style = (theme: Theme) => css`
     @media ${MOBILE_MEDIA_QUERY} {
       display: none;
     }
-  }
+  } */
 `;
 
 const GlobalStyle: React.FC = () => <Global styles={style} />;

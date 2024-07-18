@@ -8,13 +8,13 @@ import { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ThemeToggle from '../components/ThemeToggle';
-import { darkTheme, lightTheme } from '../styles/const';
+import { lightTheme } from '../styles/const';
 import GlobalStyle from '../styles/GlobalStyle';
 import * as S from './styled';
 import SubBanner from '../components/SubBanner';
 
 type LayoutProps = {
-  location: Location;
+  location?: Location;
   children: React.ReactNode;
 };
 
@@ -33,16 +33,18 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
   const { title } = data.site.siteMetadata;
 
   return (
-    <ThemeProvider theme={theme.isDark ? darkTheme : lightTheme}>
+    <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
       <S.Wrapper>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
         <S.ContentWrapper>
-          {location && <Header location={location} title={title} />}
+          {location &&
+            <Header location={location} title={title} />
+          }
           <S.Content>{children}</S.Content>
         </S.ContentWrapper>
       </S.Wrapper>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 };
 

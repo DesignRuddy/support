@@ -69,7 +69,9 @@ const createPosts = ({ createPage, edges }: CreatePagesFuncProps) => {
 };
 
 
-// 포스트 만드는 템플릿임 -> 여기에 내용들어감
+/**
+ * post Page
+ */
 const createPost = ({ createPage, edges }: CreatePagesFuncProps) => {
   const post = path.resolve(`./src/templates/post-template/index.tsx`);
 
@@ -86,7 +88,6 @@ const createPost = ({ createPage, edges }: CreatePagesFuncProps) => {
     });
   });
 };
-
 
 /**
  * faq Page
@@ -233,6 +234,10 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
   // createSearch({ createPage, edges: filteredEdges });
 };
 
+/**
+ * Node를 생성하는 구문임
+ * @param param0 
+ */
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
@@ -241,3 +246,20 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions, getNod
     createNodeField({ node, name: `slug`, value: slug });
   }
 };
+
+
+/**
+ * 관리자용 페이지 생성
+ * @param param0 
+ */
+export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
+
+  if (page.path.match(/^\/admin/)) {
+    deletePage(page);
+    createPage({
+      ...page,
+      matchPath: "/admin/*"
+    })
+  }
+}

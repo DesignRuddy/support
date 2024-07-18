@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   max-width: 690px;
   width: 100%;
   margin: 130px auto;
-  font-family: SUIT-Regular;
+  /* font-family: SUIT-Regular; */
 
   .react-rotating-text-cursor {
     animation: ${blinkingCursor} 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
@@ -36,7 +36,7 @@ export const Wrapper = styled.div`
     margin-bottom: 150px;
   }
 
-  .gatsby-image-wrapper {
+  /* .gatsby-image-wrapper {
     position: absolute;
     right: 30px;
     top: -100px;
@@ -47,7 +47,7 @@ export const Wrapper = styled.div`
       top: -20px;
       width: 100px;
     }
-  }
+  } */
 `;
 
 export const IntroWrapper = styled.div`
@@ -101,69 +101,69 @@ export const Title = styled.p`
   }
 `;
 
-export const SocialWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
+// export const SocialWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: flex-end;
 
-  @media ${MOBILE_MEDIA_QUERY} {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 15px;
-    margin-top: 10px;
-  }
-`;
+//   @media ${MOBILE_MEDIA_QUERY} {
+//     flex-direction: row;
+//     align-items: flex-start;
+//     justify-content: flex-start;
+//     gap: 15px;
+//     margin-top: 10px;
+//   }
+// `;
 
-export const SocialButton = styled.a`
-  color: ${({ theme }) => theme.color.black100};
-  font-size: 18px;
-  ${({ theme }) => hoverUnderline(theme)};
-`;
+// export const SocialButton = styled.a`
+//   color: ${({ theme }) => theme.color.black100};
+//   font-size: 18px;
+//   ${({ theme }) => hoverUnderline(theme)};
+// `;
 
-export const DropdownButton = styled.div`
-  color: ${({ theme }) => theme.color.black100};
-  font-size: 18px;
-  position: absolute;
-  height: 100px;
-  bottom: -100px;
-  & > div:first-of-type {
-    cursor: pointer;
-    ${({ theme }) => hoverUnderline(theme)};
-  }
-  @media ${MOBILE_MEDIA_QUERY} {
-    left: 0px;
-    align-items: flex-start;
-    bottom: -110px;
-  }
-`;
+// export const DropdownButton = styled.div`
+//   color: ${({ theme }) => theme.color.black100};
+//   font-size: 18px;
+//   position: absolute;
+//   height: 100px;
+//   bottom: -100px;
+//   & > div:first-of-type {
+//     cursor: pointer;
+//     ${({ theme }) => hoverUnderline(theme)};
+//   }
+//   @media ${MOBILE_MEDIA_QUERY} {
+//     left: 0px;
+//     align-items: flex-start;
+//     bottom: -110px;
+//   }
+// `;
 
-export const Dropdown = styled.div`
-  margin-top: 5px;
-  position: absolute;
-  gap: 2px;
-  display: flex;
-  flex-direction: column;
-  top: 25px;
-  right: 0;
-  align-items: flex-end;
-  z-index: 30;
-  @media ${MOBILE_MEDIA_QUERY} {
-    left: 0px;
-    align-items: flex-start;
-  }
-`;
+// export const Dropdown = styled.div`
+//   margin-top: 5px;
+//   position: absolute;
+//   gap: 2px;
+//   display: flex;
+//   flex-direction: column;
+//   top: 25px;
+//   right: 0;
+//   align-items: flex-end;
+//   z-index: 30;
+//   @media ${MOBILE_MEDIA_QUERY} {
+//     left: 0px;
+//     align-items: flex-start;
+//   }
+// `;
 
-export const BuyMeACoffeeWrapper = styled.div`
-  position: absolute;
-  top: 300px;
-  left: 0;
-  z-index: 0;
+// export const BuyMeACoffeeWrapper = styled.div`
+//   position: absolute;
+//   top: 300px;
+//   left: 0;
+//   z-index: 0;
 
-  @media ${MOBILE_MEDIA_QUERY} {
-    top: 270px;
-    right: 0;
-    left: auto;
-  }
-`;
+//   @media ${MOBILE_MEDIA_QUERY} {
+//     top: 270px;
+//     right: 0;
+//     left: auto;
+//   }
+// `;

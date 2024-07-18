@@ -10,14 +10,7 @@ type HeroSectionProps = {
 };
 
 const HeroSection: React.FC<HeroSectionProps> = () => {
-  const [isDropdownOpened, setIsDropdownOpened] = useState(false);
-  
-  const testArray = [
-    {
-      name: "누들패스 구매하고싶어요",
-      path: "/faq/"
-    }
-  ]
+  // const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
   const handleInputClick = () => {
     navigate(`/faq/`);

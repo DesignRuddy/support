@@ -2,7 +2,7 @@
   Gatsby Blog Template
 </h1>
 
-**Open source Code**: [**Github**](https://github.com/danmin20/danmin-gatsby-blog-template)
+**Open source Code**: [**Github**]()
 
 &nbsp;
 

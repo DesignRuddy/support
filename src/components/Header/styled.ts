@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 60px;
   position: fixed;
+  padding: 0 25px;
   top: 0;
   left: 0;
   background-color: ${({ theme }) => theme.color.white100};
@@ -22,6 +23,7 @@ export const Wrapper = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: center;
+  margin: 0 auto;
   justify-content: space-between;
   width: 100%;
   max-width: ${contentMaxWidth};
@@ -29,7 +31,6 @@ export const Header = styled.div`
 
   .mobile-logo {
     @media ${MOBILE_MEDIA_QUERY} {
-      background-color: ${({ theme }) => theme.color.black100};
       width: 25px;
       height: 25px;
       border-radius: 50%;
@@ -48,11 +49,13 @@ export const Header = styled.div`
 export const Menu = styled.div`
   display: flex;
   gap: 24px;
+  text-decoration: none;
   align-items: center;
 `;
 
 export const MenuLink = styled(Link) <{ isselected: string }>`
   font-size: 17px;
+
   ${({ theme }) => hoverUnderline(theme)};
   &:after {
     bottom: -2px;
