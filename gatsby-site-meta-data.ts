@@ -6,14 +6,14 @@ export default {
   description: `소속 고객센터`,
   language: `ko`,
   siteUrl: `https://support.sosok.so`, 
-  ogImage: `/og-image.png`, // Path to your in the 'static' folder
+  ogImage: `/sosoklogo.svg`, 
 
   /**
    * comments setting
    */
   comments: {
     utterances: {
-      repo: ``, //`danmin20/danmin-gatsby-blog`,
+      repo: ``, 
     },
   },
 
@@ -35,8 +35,8 @@ export default {
       resume: `https://www.figma.com/file/dtkCl6G7G5DVe18DN2LWny/%EC%9D%B4%EC%A0%95%EB%AF%BC-%EC%9D%B4%EB%A0%A5%EC%84%9C?node-id=0%3A1`,
     },
     dropdown: {
-      tistory: 'https://danminblog.tistory.com/',
-      velog: 'https://velog.io/@danmin20',
+      tistory: '',
+      velog: '',
     },
   },
 

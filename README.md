@@ -9,14 +9,10 @@
 ## ✨ 기능
 
 - ✨ 홈 화면에 원하는 글 선택적 노출
-- 🌘 다크모드 지원
 - 💅 코드 하이라이팅 지원
 - 👉 글 목차 자동 생성(ToC)
 - 💬 Utterances 댓글 기능 지원
-- ☕️ 후원을 받을 수 있는 Buy me a coffee 컴포넌트
 - 📚 글을 카테고리별로 보여주는 Posts 페이지
-- 👨‍💻 타임스탬프로 활동 경력을 보여주는 About 페이지
-- 👋 Utterances를 활용한 방명록 페이지
 - 😎 프로젝트를 보여줄 수 있는 Playground 페이지
 - 📈 다양한 개츠비 플러그인 지원 (Google Analytics, Google Adsense 등)
 - 🛠 sitemap.xml, robots.txt 자동 생성
@@ -33,7 +29,7 @@ Github Page, Netlify, Vercel 등 원하시는 배포 환경을 사용하시면 �
 
 아래 버튼을 사용하면, 개인 계정으로 템플릿 Repository 생성 및 Netlify 배포를 동시에 진행할 수 있습니다. 
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/danmin20/danmin-gatsby-blog-template)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://support-sosok.netlify.app/admin/#/collections/helps)
 
 #### 🏃‍♀️ 실행하기
 

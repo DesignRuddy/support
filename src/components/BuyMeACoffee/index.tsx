@@ -68,7 +68,7 @@ const BuyMeACoffee: React.FC = () => {
                 {toss.link && (
                   <S.List>
                     <div>토스 익명송금</div>
-                    <a href={toss.link}>toss.me/danmin</a>
+                    <a href={toss.link}></a>
                   </S.List>
                 )}
                 <S.List>
