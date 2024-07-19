@@ -24,6 +24,9 @@ type HelpsTemplateProps = {
 const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) => {
 
   const { edges, currentCategory, categories } = pageContext;
+
+  console.log("helps- pageContext", location);
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredFaqs, setFilteredFaqs] = useState<PostClass[]>([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -32,7 +35,7 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
     () => categories.findIndex((category) => category === currentCategory),
     [categories, currentCategory],
   );
-  const posts = edges.map(({ node }) => new PostClass(node));
+  // const posts = edges.map(({ node }) => new PostClass(node));
 
   /**
    * /posts로 back || categories의 value로 이동
@@ -80,6 +83,7 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
       setIsFocused(false);
     }
   };
+  // console.log("data.slug?", filteredFaqs.map(data => data.slug));
 
   return (
     <>
@@ -87,59 +91,62 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
         <Seo title={'질문하기'} />
 
 
-          <S.SearchWrapper>
-            <SearchInput
-              handleSearchChange={handleSearchChange}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
-            />
-          </S.SearchWrapper>
+        <S.SearchWrapper>
+          <SearchInput
+            handleSearchChange={handleSearchChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
+        </S.SearchWrapper>
 
-          <S.DropDownWrapper
-            isFocused={isFocused}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            tabIndex={-1} // 이 속성은 div가 포커스를 받을 수 있도록 합니다.
-          >
-            {searchTerm ? (
-              <S.DropDown>
-                {filteredFaqs.map(help => (
-                  <S.DropDownItem
-                    key={help.id}
-                    onClick={() => navigate(help.slug)} // 아이템 클릭 시 상세 페이지로 이동
-                  >
-                    {help.title}
-                  </S.DropDownItem>
-                ))}
-              </S.DropDown>
-            ) : (
-              <></>
-            )
-            }
-          </S.DropDownWrapper>
-
-          <S.MainWrapper>
-            <S.TabWrapper>
-              <S.Tabs ref={ref}>
-                {categories.map((title, index) => (
-                  <S.Tab
-                    key={index}
-                    isSelected={currentTabIndex === index ? 'true' : 'false'}
-                    onClick={() => onTabIndexChange(index)}
-                  >
-                    {title}
-                  </S.Tab>
-                ))}
-              </S.Tabs>
-            </S.TabWrapper>
-
-            <S.PostCardsWrapper>
-              {posts.map((post, index) => (
-                <PostCard key={index} post={post} />
+        <S.DropDownWrapper
+          isFocused={isFocused}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          tabIndex={-1} // 이 속성은 div가 포커스를 받을 수 있도록 합니다.
+        >
+          {searchTerm ? (
+            <S.DropDown>
+              {filteredFaqs.map(help => (
+                <S.DropDownItem
+                  key={help.id}
+                  onClick={() => navigate(
+                    // help.slug
+                    '/'
+                  )} // 아이템 클릭 시 상세 페이지로 이동
+                >
+                  {help.title}
+                </S.DropDownItem>
               ))}
-            </S.PostCardsWrapper>
+            </S.DropDown>
+          ) : (
+            <></>
+          )
+          }
+        </S.DropDownWrapper>
 
-          </S.MainWrapper>
+        <S.MainWrapper>
+          <S.TabWrapper>
+            <S.Tabs ref={ref}>
+              {categories.map((title, index) => (
+                <S.Tab
+                  key={index}
+                  isSelected={currentTabIndex === index ? 'true' : 'false'}
+                  onClick={() => onTabIndexChange(index)}
+                >
+                  {title}
+                </S.Tab>
+              ))}
+            </S.Tabs>
+          </S.TabWrapper>
+
+          <S.PostCardsWrapper>
+            {/* {posts.map((post, index) => (
+                <PostCard key={index} post={post} />
+              ))} */}
+          </S.PostCardsWrapper>
+
+        </S.MainWrapper>
       </Layout>
     </>
   );
@@ -147,59 +154,72 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
 
 export default HelpsTemplate;
 
+// export const pageQuery = graphql`
+//   query ($slug: String, $nextSlug: String, $prevSlug: String) {
+//     cur: markdownRemark(fields: { slug: { eq: $slug } }) {
+//       id
+//       html
+//       excerpt(pruneLength: 500, truncate: true)
+//       frontmatter {
+//         date(formatString: "YYYY.MM.DD")
+//         title
+//         categories
+//       }
+//       fields {
+//         slug
+//       }
+//     }
+
+//     next: markdownRemark(fields: { slug: { eq: $nextSlug } }) {
+//       id
+//       html
+//       frontmatter {
+//         date(formatString: "YYYY.MM.DD")
+//         title
+//         categories
+//       }
+//       fields {
+//         slug
+//       }
+//     }
+
+//     prev: markdownRemark(fields: { slug: { eq: $prevSlug } }) {
+//       id
+//       html
+//       frontmatter {
+//         date(formatString: "YYYY.MM.DD")
+//         title
+//         categories
+//       }
+//       fields {
+//         slug
+//       }
+//     }
+
+//     site {
+//       siteMetadata {
+//         siteUrl
+//         comments {
+//           utterances {
+//             repo
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
+
 export const pageQuery = graphql`
-  query ($slug: String, $nextSlug: String, $prevSlug: String) {
-    cur: markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      html
-      excerpt(pruneLength: 500, truncate: true)
+  query($id: String) {
+    mdx(id: { eq: $id }) {
+      body
       frontmatter {
-        date(formatString: "YYYY.MM.DD")
+        
         title
-        categories
-      }
-      fields {
-        slug
-      }
-    }
-
-    next: markdownRemark(fields: { slug: { eq: $nextSlug } }) {
-      id
-      html
-      frontmatter {
-        date(formatString: "YYYY.MM.DD")
-        title
-        categories
-      }
-      fields {
-        slug
-      }
-    }
-
-    prev: markdownRemark(fields: { slug: { eq: $prevSlug } }) {
-      id
-      html
-      frontmatter {
-        date(formatString: "YYYY.MM.DD")
-        title
-        categories
-      }
-      fields {
-        slug
-      }
-    }
-
-    site {
-      siteMetadata {
-        siteUrl
-        comments {
-          utterances {
-            repo
-          }
-        }
       }
     }
   }
 `;
 
+console.log("pageQuery", pageQuery);
 

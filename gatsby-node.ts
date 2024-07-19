@@ -24,49 +24,49 @@ type CreatePagesFuncProps = {
 };
 
 //포스트s 내용? 전체보기? 모아 보기?
-const createPosts = ({ createPage, edges }: CreatePagesFuncProps) => {
-  const posts = path.resolve(`./src/templates/posts-template/index.tsx`);
-  const categorySet: Set<string> = new Set();
+// const createPosts = ({ createPage, edges }: CreatePagesFuncProps) => {
+//   const posts = path.resolve(`./src/templates/posts-template/index.tsx`);
+//   const categorySet: Set<string> = new Set();
 
-  const edgesWithMap = edges.map((edge) => {
-    const { categories } = edge.node.frontmatter;
-    const categoriesArr = categories.split(' ');
-    const categoriesMap = categoriesArr.reduce((acc, category) => {
-      acc[category] = true;
-      return acc;
-    }, {} as Record<string, boolean>);
+//   const edgesWithMap = edges.map((edge) => {
+//     const { categories } = edge.node.frontmatter;
+//     const categoriesArr = categories.split(' ');
+//     const categoriesMap = categoriesArr.reduce((acc, category) => {
+//       acc[category] = true;
+//       return acc;
+//     }, {} as Record<string, boolean>);
 
-    return { ...edge, categoriesMap };
-  });
+//     return { ...edge, categoriesMap };
+//   });
 
-  edgesWithMap.forEach((edge) => {
-    const postCategories = Object.keys(edge.categoriesMap);
-    postCategories.forEach((category) => {
-      const categoryName = category.replace('featured-', '').trim();
-      categorySet.add(categoryName);
-    });
-  });
+//   edgesWithMap.forEach((edge) => {
+//     const postCategories = Object.keys(edge.categoriesMap);
+//     postCategories.forEach((category) => {
+//       const categoryName = category.replace('featured-', '').trim();
+//       categorySet.add(categoryName);
+//     });
+//   });
 
-  const categories = ['전체', ...[...categorySet].sort((a, b) => a.localeCompare(b))];
+//   const categories = ['전체', ...[...categorySet].sort((a, b) => a.localeCompare(b))];
 
-  createPage({
-    path: `/posts`,
-    component: posts,
-    context: { currentCategory: '전체', edges, categories },
-  });
+//   createPage({
+//     path: `/posts`,
+//     component: posts,
+//     context: { currentCategory: '전체', edges, categories },
+//   });
 
-  categories.forEach((currentCategory) => {
-    createPage({
-      path: `/posts/${currentCategory}`,
-      component: posts,
-      context: {
-        currentCategory,
-        categories,
-        edges: edgesWithMap.filter((edge) => edge.categoriesMap[currentCategory]),
-      },
-    });
-  });
-};
+//   categories.forEach((currentCategory) => {
+//     createPage({
+//       path: `/posts/${currentCategory}`,
+//       component: posts,
+//       context: {
+//         currentCategory,
+//         categories,
+//         edges: edgesWithMap.filter((edge) => edge.categoriesMap[currentCategory]),
+//       },
+//     });
+//   });
+// };
 
 
 /**
@@ -90,14 +90,14 @@ const createPost = ({ createPage, edges }: CreatePagesFuncProps) => {
 };
 
 /**
- * faq Page
+ * helps Page
  */
-const createFaQ = ({ createPage, edges }: CreatePagesFuncProps) => {
+const createHelps = ({ createPage, edges }: CreatePagesFuncProps) => {
   const helps = path.resolve(`./src/templates/helps-template/index.tsx`);
   const categorySet: Set<string> = new Set();
 
   const edgesWithMap = edges.map((edge) => {
-    const { categories } = edge.node.frontmatter;
+    const { categories } = edge.node.frontmatter.;
     const categoriesArr = categories.split(' ');
     const categoriesMap = categoriesArr.reduce((acc, category) => {
       acc[category] = true;
@@ -125,7 +125,7 @@ const createFaQ = ({ createPage, edges }: CreatePagesFuncProps) => {
 
   categories.forEach((currentCategory) => {
     createPage({
-      path: `/faq/${currentCategory}`,
+      path: `/helps/${currentCategory}`,
       component: helps,
       context: {
         currentCategory,
@@ -135,28 +135,6 @@ const createFaQ = ({ createPage, edges }: CreatePagesFuncProps) => {
     });
   });
 };
-
-
-/**
- * faq/search *(!layout && search Page)
- */
-// const createSearch = ({ createPage, edges }: CreatePagesFuncProps) => {
-//   const post = path.resolve(`./src/templates/faq-template/index.tsx`);
-
-//   edges.forEach(({ node, next, previous }) => {
-//     createPage({
-//       path: node.fields.slug,
-//       component: post,
-//       context: {
-//         // additional data can be passed via context
-//         slug: node.fields.slug,
-//         nextSlug: next?.fields.slug ?? '',
-//         prevSlug: previous?.fields.slug ?? '',
-//       },
-//     });
-//   });
-// };
-
 
 // 페이지에 대한 정의?같은거인듯
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
@@ -180,6 +158,8 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
               slug
             }
             frontmatter {
+              id
+              services
               categories
               title
               date(formatString: "YYYY.MM.DD")
@@ -228,9 +208,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
     };
   });
 
-  createPosts({ createPage, edges: filteredEdges });
+  // createPosts({ createPage, edges: filteredEdges });
   createPost({ createPage, edges: filteredEdges });
-  createFaQ({ createPage, edges: filteredEdges });
+  createHelps({ createPage, edges: filteredEdges });
   // createSearch({ createPage, edges: filteredEdges });
 };
 
