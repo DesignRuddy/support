@@ -21,6 +21,9 @@ jobs:
 
       - name: Build
         run: yarn build  # 빌드 스크립트 실행
+        
+      - name: List build directory
+        run: ls -la public  # 배포
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
