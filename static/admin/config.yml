@@ -15,7 +15,43 @@ collections:
     public_folder: 'assets/images'
     path: '{{services}/{categories}/{title}/index}'
     editor:
-      preview: false
+      preview: true
+    fields:
+      - { label: 'Id', name: 'id', widget: 'string' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Services', name: 'services', widget: 'string' }
+      - { label: 'Categories', name: 'categories', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY.MM.DD' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: 'azit'
+    label: 'Azit'
+    folder: 'content/azit'
+    create: true
+    slug: '{{slug}}'
+    media_folder: 'assets/images'
+    public_folder: 'assets/images'
+    path: '{{services}/{categories}/{title}/index}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Id', name: 'id', widget: 'string' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Services', name: 'services', widget: 'string' }
+      - { label: 'Categories', name: 'categories', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY.MM.DD' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: 'business'
+    label: 'Business'
+    folder: 'content/business'
+    create: true
+    slug: '{{slug}}'
+    media_folder: 'assets/images'
+    public_folder: 'assets/images'
+    path: '{{services}/{categories}/{title}/index}'
+    editor:
+      preview: true
     fields:
       - { label: 'Id', name: 'id', widget: 'string' }
       - { label: 'Title', name: 'title', widget: 'string' }
