@@ -6,13 +6,13 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'help'
+  - name: 'helps'
     label: 'Helps'
     folder: 'content/sosok'
     create: true
     slug: 'index'
-    media_folder: ''
-    public_folder: ''
+    media_folder: 'assets/images'
+    public_folder: 'assets/images'
     path: '{{title}}/index'
     editor:
       preview: false
