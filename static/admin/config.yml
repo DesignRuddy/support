@@ -6,11 +6,11 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'helps'
-    label: 'Helps'
+  - name: 'sosok'
+    label: 'Sosok'
     folder: 'content/sosok'
     create: true
-    slug: 'index'
+    slug: '{{slug}}'
     media_folder: 'assets/images'
     public_folder: 'assets/images'
     path: '{{services}/{categories}/{title}/index}'
@@ -21,5 +21,5 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Services', name: 'services', widget: 'string' }
       - { label: 'Categories', name: 'categories', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY.MM.DD' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
