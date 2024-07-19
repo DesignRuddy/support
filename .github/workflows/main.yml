@@ -30,5 +30,5 @@ jobs:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'ap-northeast-2'  # 버킷이 위치한 리전
-          SOURCE_DIR: 'build'      # 배포할 디렉토리
+          AWS_REGION: ${{ secrets.AWS_S3_REGION }}  # 버킷이 위치한 리전
+          SOURCE_DIR: 'public'      # 배포할 디렉토리
