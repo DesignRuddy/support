@@ -8,87 +8,24 @@
     <title>Content Manager</title>
 
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script> -->
+    <!-- <script src="/admin/cms.js"></script> -->
 </head>
 
 <body>
+    <div data-netlify-identity-menu></div>
+    <div data-netlify-identity-button>Login with Netlify Identity</div>
     <script>
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on('init', user => {
                 if (!user) {
+                    document.getElementById('login-button').addEventListener('click', () => {
+                        window.netlifyIdentity.open();
+                    });
                     window.netlifyIdentity.on('login', () => {
                         document.location.href = '/admin/';
                     });
                 }
-            });
-        }
-    </script>
-    
-    <script>
-        function initializeCMS() {
-            var CategoriesControl = window.createClass({
-                handleChange: function (e) {
-                    const separator = this.props.field.get('separator', ', ')
-                    this.props.onChange(e.target.value.split(separator).map((e) => e.trim()));
-                },
-
-                render: function () {
-                    const separator = this.props.field.get('separator', ', ');
-                    var value = this.props.value;
-                    return window.h('input', {
-                        id: this.props.forID,
-                        className: this.props.classNameWrapper,
-                        type: 'text',
-                        value: value ? value.join(separator) : '',
-                        onChange: this.handleChange,
-                    });
-                },
-            });
-
-            var CategoriesPreview = window.createClass({
-                render: function () {
-                    return window.h('ul', {},
-                        this.props.value.map(function (val, index) {
-                            return window.h('li', { key: index }, val);
-                        })
-                    );
-                }
-            });
-
-            var schema = {
-                properties: {
-                    separator: { type: 'string' },
-                },
-            }
-
-            window.CMS.registerWidget('categories', CategoriesControl, CategoriesPreview, schema);
-
-            window.CMS.init({
-                config: {
-                    backend: {
-                        name: 'git-gateway',
-                        branch: 'main', // Replace with your branch
-                    },
-                    media_folder: 'static/images/uploads',
-                    public_folder: '/images/uploads',
-                    collections: [
-                        {
-                            name: 'posts',
-                            label: 'Posts',
-                            folder: 'content/azit',
-                            create: true,
-                            slug: '{{slug}}',
-                            fields: [
-                                { label: 'Title', name: 'title', widget: 'string' },
-                                { label: 'Draft', name: 'draft', widget: 'boolean' },
-                                { label: 'Publish Date', name: 'date', widget: 'datetime' },
-                                { label: 'Cover Image', name: 'image', widget: 'image', required: false },
-                                { label: 'Body', name: 'body', widget: 'markdown' },
-                            ],
-                        },
-                        // Add more collections here
-                    ],
-                },
             });
         }
     </script>

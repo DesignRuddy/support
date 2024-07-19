@@ -22,12 +22,12 @@ const config: GatsbyConfig = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-svgr`,
-    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-decap-cms`,
     // netlify-cms for Custom 
     {
-      resolve: `gatsby-plugin-netlify-cms`,
+      resolve: `gatsby-plugin-decap-cms`,
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`
+        modulePath: `${__dirname}/src/cms/cms.jsx`,
       },
     },
     // Google Adsense

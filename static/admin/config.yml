@@ -6,7 +6,7 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'helps'
+  - name: 'help'
     label: 'Helps'
     folder: 'content/sosok'
     create: true
