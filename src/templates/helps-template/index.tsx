@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import Seo from '@/src/components/Seo';
@@ -146,4 +146,60 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
 };
 
 export default HelpsTemplate;
+
+export const pageQuery = graphql`
+  query ($slug: String, $nextSlug: String, $prevSlug: String) {
+    cur: markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
+      html
+      excerpt(pruneLength: 500, truncate: true)
+      frontmatter {
+        date(formatString: "YYYY.MM.DD")
+        title
+        categories
+      }
+      fields {
+        slug
+      }
+    }
+
+    next: markdownRemark(fields: { slug: { eq: $nextSlug } }) {
+      id
+      html
+      frontmatter {
+        date(formatString: "YYYY.MM.DD")
+        title
+        categories
+      }
+      fields {
+        slug
+      }
+    }
+
+    prev: markdownRemark(fields: { slug: { eq: $prevSlug } }) {
+      id
+      html
+      frontmatter {
+        date(formatString: "YYYY.MM.DD")
+        title
+        categories
+      }
+      fields {
+        slug
+      }
+    }
+
+    site {
+      siteMetadata {
+        siteUrl
+        comments {
+          utterances {
+            repo
+          }
+        }
+      }
+    }
+  }
+`;
+
 
