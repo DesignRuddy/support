@@ -23,6 +23,13 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-svgr`,
     `gatsby-plugin-netlify-cms`,
+    // netlify-cms for Custom 
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`
+      },
+    },
     // Google Adsense
     {
       resolve: `gatsby-plugin-google-adsense`,
@@ -102,7 +109,7 @@ const config: GatsbyConfig = {
     //     dark: darkTheme,
     //   },
     // },
-    
+
     // {
     //   resolve: 'gatsby-plugin-robots-txt',
     //   options: {

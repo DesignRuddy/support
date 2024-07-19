@@ -20,7 +20,7 @@ type HelpsProps = {
 }
 
 const Helps: React.FC<HelpsProps> = ({ location, data }) => {
-    const helps = data.allMarkdownRemark.edges.map(({ node }) => new HelpsClass(node));
+    const helps = data.allMarkdownRemark?.edges?.map(({ node }) => new HelpsClass(node));
    
     return (
         <>
