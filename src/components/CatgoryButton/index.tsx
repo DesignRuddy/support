@@ -1,16 +1,16 @@
-import FaQClass from '@/src/models/faq';
+import HelpsClass from '@/src/models/helps';
 import React from 'react';
 
 type CategoryButtonProps = {
-    faq?: FaQClass[];
+    helps?: HelpsClass[];
 };
 
-const CategoryButton: React.FC<CategoryButtonProps> = ({ faq }) => {
+const CategoryButton: React.FC<CategoryButtonProps> = ({ helps }) => {
 
     return (
         <div>
-            {/* {faq.map((faq,index) => (
-                <div key={index}>{faq.author}</div>
+            {/* {helps.map((helps,index) => (
+                <div key={index}>{helps.author}</div>
             ))} */}
             테스트 중입니다.
         </div>

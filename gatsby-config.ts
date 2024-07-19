@@ -102,14 +102,15 @@ const config: GatsbyConfig = {
     //     dark: darkTheme,
     //   },
     // },
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        host: '',
-        sitemap: '',
-        policy: [{ userAgent: '*', allow: '/' }],
-      },
-    },
+    
+    // {
+    //   resolve: 'gatsby-plugin-robots-txt',
+    //   options: {
+    //     host: '',
+    //     sitemap: '',
+    //     policy: [{ userAgent: '*', allow: '/' }],
+    //   },
+    // },
 
     {
       resolve: `gatsby-source-filesystem`,

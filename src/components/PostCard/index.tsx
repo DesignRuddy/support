@@ -14,7 +14,10 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <S.Wrapper>
       <S.PostCard key={id} to={slug}>
-        <S.Title className='title'>{title}</S.Title>
+        <S.Title className='title'>
+          <span style={{ marginRight: '8px', fontSize: '21px', fontWeight: 'bold' }}>Q.</span>
+          {title}
+        </S.Title>
         {/* <S.Description dangerouslySetInnerHTML={{ __html: excerpt }} /> */}
       </S.PostCard>
     </S.Wrapper>

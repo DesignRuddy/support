@@ -3,32 +3,35 @@ import React from 'react';
 import { AllMarkdownRemark, SiteMetadata } from '../type';
 import Layout from '../layout';
 import Seo from '../components/Seo';
-import SubBanner from '../components/SubBanner';
+// import SubBanner from '../components/SubBanner';
 import CategoryButton from '../components/CatgoryButton';
-import FaQClass from '../models/faq';
+import HelpsClass from '../models/helps';
 
-type FaqProps = {
+type HelpsProps = {
     data: {
         site: { siteMetadata: SiteMetadata };
         allMarkdownRemark: AllMarkdownRemark;
+        cur:any;
+        next: any;
+        prev: any;
     };
     location: Location;
     
 }
 
-const Faq: React.FC<FaqProps> = ({ location, data }) => {
-    const faq = data.allMarkdownRemark.edges.map(({ node }) => new FaQClass(node));
+const Helps: React.FC<HelpsProps> = ({ location, data }) => {
+    const helps = data.allMarkdownRemark.edges.map(({ node }) => new HelpsClass(node));
    
     return (
         <>
             <Layout location={location}>
                 <Seo title='자주 묻는 질문' />
-                <CategoryButton faq={faq} />
+                <CategoryButton helps={helps} />
             </Layout>
         </>
     )
 }
-export default Faq; 
+export default Helps; 
 
 
 
@@ -42,7 +45,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY.MM.DD")
         title
         categories
-        emoji
       }
       fields {
         slug
@@ -56,7 +58,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY.MM.DD")
         title
         categories
-        emoji
       }
       fields {
         slug
@@ -70,7 +71,6 @@ export const pageQuery = graphql`
         date(formatString: "YYYY.MM.DD")
         title
         categories
-        emoji
       }
       fields {
         slug

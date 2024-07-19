@@ -23,16 +23,11 @@ const Home: React.FC<HomeProps> = ({ location, data }) => {
   const posts = data.allMarkdownRemark.edges.map(({ node }) => new PostClass(node));
 
   console.log("post?", posts);
-  const { author, featured } = data.site.siteMetadata;
+
+  const { author } = data.site.siteMetadata;
 
   const recentPosts = posts.slice(0, 3);
   console.log("recentPosts", recentPosts);
-
-
-  // const featuredPosts = featured.map(({ title, category }) => {
-  //   const filteredPosts = posts.filter((post) => post.categories.find((c) => c === category));
-  //   return { title, posts: filteredPosts };
-  // });
 
   return (
     <>
@@ -42,10 +37,6 @@ const Home: React.FC<HomeProps> = ({ location, data }) => {
         <HeroSection />
       </Layout>
 
-
-      {/* {featuredPosts.map(({ title, posts }, i) => (
-            <FeaturedPostColumn key={i} title={title} posts={posts} />
-          ))}  */}
       <Layout>
         <MainBanner author={author} />
       </Layout>

@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ title, location }) => {
           </div>
         </div>
         <S.Menu>
-          <S.MenuLink to='/faq' isselected={(pathname === '/faq').toString()}>
+          <S.MenuLink to='/helps' isselected={(pathname === '/helps').toString()}>
             자주 묻는 질문
           </S.MenuLink>
           <S.MenuLink to='/guestbook' isselected={(pathname === '/guestbook').toString()}>

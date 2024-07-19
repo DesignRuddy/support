@@ -13,7 +13,7 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
   // const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
   const handleInputClick = () => {
-    navigate(`/helps/`);
+    navigate(`/helps`);
   }
 
   return (

@@ -8,14 +8,13 @@ export const Wrapper = styled.div`
 
   @media ${MOBILE_MEDIA_QUERY} {
     border-radius: 20px;
-    width: 300px;
-    height: 250px;
+    width: 100%;
   }
 `;
 
 export const SearchWrapper = styled.div`
   width: 100%;
-  maxWidth: ${contentMaxWidth};
+  max-width: ${contentMaxWidth};
 `;
 
 export const InputWrapper = styled.div`
@@ -53,6 +52,17 @@ export const SearchInput = styled.input`
     font-size: 27px;
     caret-color: #36E579;
     margin: 0;
+
+    @media ${MOBILE_MEDIA_QUERY} {
+      border-radius: 5px;
+      width: 100%;
+      font-size: 18px;
+
+      &::placeholder{
+        font-size: 18px;
+      }
+    }
+
     &::placeholder{
         color: #ccc;
     }

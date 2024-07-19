@@ -1,11 +1,10 @@
 import { MarkdownRemark } from '../type';
 
-export default class FaQClass {
-  id;
+export default class HelpsClass {
+  id?;
   excerpt?;
-  emoji?;
   html?;
-  slug;
+  slug?;
   title?;
   author?;
   date?;
@@ -21,7 +20,7 @@ export default class FaQClass {
 
     this.id = id;
     this.excerpt = excerpt;
-    this.emoji = emoji;
+    // this.emoji = emoji;
     this.html = html;
     this.slug = slug;
     this.title = title;

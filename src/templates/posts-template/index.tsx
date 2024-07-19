@@ -31,8 +31,8 @@ const PostsTemplate: React.FC<PostsTemplateProps> = ({ location, pageContext }) 
    * /posts로 back || categories의 value로 이동
    */
   const onTabIndexChange = (value: number) => {
-    if (value === 0) return navigate(`/posts`);
-    navigate(`/posts/${categories[value]}`);
+    if (value === 0) return navigate(`/helps`);
+    navigate(`/helps/${categories[value]}`);
   };
 
   const ref = useRef<HTMLDivElement>(null);
