@@ -13,7 +13,7 @@ collections:
     slug: '{{slug}}'
     media_folder: 'assets/images'
     public_folder: 'assets/images'
-    path: '{{services}/{categories}/{title}/index}'
+    path: '{{id}}'
     editor:
       preview: true
     fields:
@@ -31,7 +31,7 @@ collections:
     slug: '{{slug}}'
     media_folder: 'assets/images'
     public_folder: 'assets/images'
-    path: '{{services}/{categories}/{title}/index}'
+    path: '{{id}}'
     editor:
       preview: true
     fields:
@@ -49,7 +49,7 @@ collections:
     slug: '{{slug}}'
     media_folder: 'assets/images'
     public_folder: 'assets/images'
-    path: '{{services}/{categories}/{title}/index}'
+    path: '{{id}}'
     editor:
       preview: true
     fields:
