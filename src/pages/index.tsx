@@ -4,11 +4,11 @@ import React from 'react';
 import MainBanner from '../components/MainBanner';
 import Seo from '../components/Seo';
 import Layout from '../layout';
-import PostClass from '../models/post';
 import { AllMarkdownRemark, SiteMetadata } from '../type';
 import Footer from '../components/Footer';
 import SubBanner from '../components/SubBanner';
 import HeroSection from '../components/HeroSection';
+import HelpsClass from '../models/helps';
 
 
 type HomeProps = {
@@ -20,14 +20,13 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ location, data }) => {
-  const posts = data.allMarkdownRemark.edges.map(({ node }) => new PostClass(node));
-
-  console.log("post?", posts);
+  const helps = data.allMarkdownRemark.edges.map(({ node }) => new HelpsClass(node));
 
   const { author } = data.site.siteMetadata;
 
-  const recentPosts = posts.slice(0, 3);
-  console.log("recentPosts", recentPosts);
+  // allMarkdownRemark.edges의 3개의 게시물을 보여주는?
+  // const recentHelps = helps.slice(0, 3);
+  // console.log("recentHelps", recentHelps);
 
   return (
     <>
@@ -59,6 +58,7 @@ export const pageQuery = graphql`
           id
           excerpt(pruneLength: 500, truncate: true)
           frontmatter {
+            services
             categories
             title
             date(formatString: "YYYY.MM.DD")

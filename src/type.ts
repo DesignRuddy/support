@@ -58,7 +58,7 @@ export type Social = {
   resume: string;
 };
 
-export type Post = {
+export type Help = {
   id: string;
   excerpt: string;
   html: string;
@@ -72,17 +72,24 @@ export type AllMarkdownRemark = {
 
 export type MarkdownRemark = {
   id: string;
-  frontmatter: Frontmatter;
-  fields: Fields;
   excerpt: string;
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    services: string;
+    categories: string;
+    title: string;
+    date: string;
+  };
   html: string;
 };
 
 export type Frontmatter = {
   title: string;
-  author: string;
-  date: string;
   emoji: string;
+  date: string;
+  services: string;
   categories: string;
 };
 

@@ -1,24 +1,26 @@
 import React from 'react';
 
-import PostClass from '@/src/models/post';
-
 import * as S from './styled';
+import HelpsClass from '@/src/models/helps';
 
 type PostCardProps = {
-  post: PostClass;
+  item: any;
 };
 
-const PostCard: React.FC<PostCardProps> = ({ post }) => {
-  const { id, slug, title, excerpt, date, categories } = post;
+const PostCard: React.FC<PostCardProps> = ({ item }) => {
+  const { id, excerpt, frontmatter, fields } = item;
 
+  const { slug } = fields;
+  console.log("item", item);
+  
   return (
     <S.Wrapper>
       <S.PostCard key={id} to={slug}>
         <S.Title className='title'>
           <span style={{ marginRight: '8px', fontSize: '21px', fontWeight: 'bold' }}>Q.</span>
-          {title}
+          {frontmatter.title}
         </S.Title>
-        {/* <S.Description dangerouslySetInnerHTML={{ __html: excerpt }} /> */}
+        <S.Description dangerouslySetInnerHTML={{ __html: excerpt }} />
       </S.PostCard>
     </S.Wrapper>
   );

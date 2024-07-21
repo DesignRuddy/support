@@ -1,34 +1,33 @@
 import { MarkdownRemark } from '../type';
 
 export default class HelpsClass {
-  id?;
-  excerpt?;
-  html?;
-  slug?;
-  title?;
-  author?;
-  date?;
-  categories?;
-  filteredCategories?;
+  id;
+  html;
+  slug;
+  title;
+  date;
+  services;
+  excerpt;
+  categories;
+  // filteredCategories;
 
   constructor(node: MarkdownRemark) {
-    const { id, html, excerpt, frontmatter, fields } = node;
+    const { html, id, frontmatter, fields, excerpt } = node;
     const { slug } = fields;
-    const { emoji, categories, title, author, date } = frontmatter;
+    const { categories, title, date, services } = frontmatter;
 
     const categoryArr = categories.split(' ');
 
     this.id = id;
     this.excerpt = excerpt;
-    // this.emoji = emoji;
+    this.services = services
     this.html = html;
     this.slug = slug;
     this.title = title;
-    this.author = author;
     this.date = date;
     this.categories = categoryArr;
-    this.filteredCategories = categoryArr.map((category) => {
-      return category.replace('featured-', '').trim();
-    });
+    // this.filteredCategories = categoryArr.map((category) => {
+    //   return category.replace('featured-', '').trim();
+    // });
   }
 }

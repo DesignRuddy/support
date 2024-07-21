@@ -4,48 +4,56 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Seo from '@/src/components/Seo';
 import Layout from '@/src/layout';
 import SearchInput from '@/src/components/SearchInput'
-// import HelpClass from '@/src/models/helps';
 import { AllMarkdownRemark } from '@/src/type';
 
 import * as S from './styled';
-import PostClass from '@/src/models/post';
 import PostCard from '@/src/components/PostCard';
+import HelpsClass from '@/src/models/helps';
 // import { DividerHorizontalIcon } from '@radix-ui/react-icons';
 
 type HelpsTemplateProps = {
   location: Location;
   pageContext: {
-    currentCategory: string;
-    categories: string[];
+    // currentCategory: string;
+    // categories: string[];
     edges: AllMarkdownRemark['edges'];
   };
 };
 
 const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) => {
 
-  const { edges, currentCategory, categories } = pageContext;
+  const { edges } = pageContext;
 
-  console.log("helps- pageContext", location);
-  
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredFaqs, setFilteredFaqs] = useState<PostClass[]>([]);
+  const [filteredFaqs, setFilteredFaqs] = useState<HelpsClass[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState('전체');
 
-  const currentTabIndex = useMemo(
-    () => categories.findIndex((category) => category === currentCategory),
-    [categories, currentCategory],
-  );
-  // const posts = edges.map(({ node }) => new PostClass(node));
+
+  const items = useMemo(() => edges.map(({ node }) => new HelpsClass(node)), [edges]);
+
+  const filteredPosts = useMemo(() => {
+    if (currentCategory === '전체') {
+      return items;
+    }
+    return items.filter(post => post.services === currentCategory);
+  }, [currentCategory, items]);
+
+  // const currentTabIndex = useMemo(
+  //   () => categories.findIndex((category) => category === currentCategory),
+  //   [categories, currentCategory],
+  // );
 
   /**
    * /posts로 back || categories의 value로 이동
    */
-  const onTabIndexChange = (value: number) => {
-    if (value === 0) return navigate(`/helps`);
-    navigate(`/helps/${categories[value]}`);
-  };
 
-  const ref = useRef<HTMLDivElement>(null);
+  // const onTabIndexChange = (value: number) => {
+  //   if (value === 0) return navigate(`/helps`);
+  //   navigate(`/helps/${categories[value]}`);
+  // };
+
+  // const ref = useRef<HTMLDivElement>(null);
 
   // currentTab이 가운데에 오도록 스크롤
   // useEffect(() => {
@@ -57,7 +65,7 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
   useEffect(() => {
     if (searchTerm) {
       const Terms = edges
-        .map(({ node }) => new PostClass(node))
+        .map(({ node }) => new HelpsClass(node))
         .filter(help =>
           help.title.includes(searchTerm) ||
           help.excerpt.includes(searchTerm)
@@ -83,7 +91,16 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
       setIsFocused(false);
     }
   };
+
+  const handleCategoryChange = (category: string) => {
+    setCurrentCategory(category);
+  };
+
+  const item = edges.map(data => data.node)
   // console.log("data.slug?", filteredFaqs.map(data => data.slug));
+  console.log(item);
+
+  const path = location.pathname.split('/')[1];
 
   return (
     <>
@@ -99,6 +116,7 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
           />
         </S.SearchWrapper>
 
+        {/* 검색쿼리에 관한 DropDown */}
         <S.DropDownWrapper
           isFocused={isFocused}
           onFocus={handleFocus}
@@ -111,8 +129,7 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
                 <S.DropDownItem
                   key={help.id}
                   onClick={() => navigate(
-                    // help.slug
-                    '/'
+                    help.slug
                   )} // 아이템 클릭 시 상세 페이지로 이동
                 >
                   {help.title}
@@ -126,24 +143,28 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
         </S.DropDownWrapper>
 
         <S.MainWrapper>
+
+          {/* 서비스 탭 */}
           <S.TabWrapper>
-            <S.Tabs ref={ref}>
-              {categories.map((title, index) => (
+            <S.Tabs>
+              {['전체', '소속', '비즈니스', '아지트'].map((category, index) => (
                 <S.Tab
                   key={index}
-                  isSelected={currentTabIndex === index ? 'true' : 'false'}
-                  onClick={() => onTabIndexChange(index)}
+                  isSelected={currentCategory === category ? 'true' : 'false'}
+                  onClick={() => handleCategoryChange(category)}
                 >
-                  {title}
+                  {category}
                 </S.Tab>
               ))}
             </S.Tabs>
           </S.TabWrapper>
 
+
+          {/* 카테고리 탭 */}
           <S.PostCardsWrapper>
-            {/* {posts.map((post, index) => (
-                <PostCard key={index} post={post} />
-              ))} */}
+            {item.map((item, index) => (
+              <PostCard key={index} item={item} />
+            ))}
           </S.PostCardsWrapper>
 
         </S.MainWrapper>
@@ -154,72 +175,20 @@ const HelpsTemplate: React.FC<HelpsTemplateProps> = ({ location, pageContext }) 
 
 export default HelpsTemplate;
 
-// export const pageQuery = graphql`
-//   query ($slug: String, $nextSlug: String, $prevSlug: String) {
-//     cur: markdownRemark(fields: { slug: { eq: $slug } }) {
-//       id
-//       html
-//       excerpt(pruneLength: 500, truncate: true)
-//       frontmatter {
-//         date(formatString: "YYYY.MM.DD")
-//         title
-//         categories
-//       }
-//       fields {
-//         slug
-//       }
-//     }
-
-//     next: markdownRemark(fields: { slug: { eq: $nextSlug } }) {
-//       id
-//       html
-//       frontmatter {
-//         date(formatString: "YYYY.MM.DD")
-//         title
-//         categories
-//       }
-//       fields {
-//         slug
-//       }
-//     }
-
-//     prev: markdownRemark(fields: { slug: { eq: $prevSlug } }) {
-//       id
-//       html
-//       frontmatter {
-//         date(formatString: "YYYY.MM.DD")
-//         title
-//         categories
-//       }
-//       fields {
-//         slug
-//       }
-//     }
-
-//     site {
-//       siteMetadata {
-//         siteUrl
-//         comments {
-//           utterances {
-//             repo
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export const pageQuery = graphql`
   query($id: String) {
-    mdx(id: { eq: $id }) {
-      body
+		 markdownRemark(fields: {slug: {eq: $id}}) {
+      id
+      excerpt(pruneLength: 500, truncate: true)
       frontmatter {
-        
+        date(formatString: "YYYY.MM.DD")
         title
+        categories
+      }
+      fields {
+        slug
       }
     }
   }
 `;
-
-console.log("pageQuery", pageQuery);
-

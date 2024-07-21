@@ -1,29 +1,29 @@
 import React from 'react';
 
-import PostClass from '@/src/models/post';
 
 import * as S from './styled';
+import HelpsClass from '@/src/models/helps';
 
-type PostHeaderProps = {
-  post: PostClass;
+type HelpsHeaderProps = {
+  help: HelpsClass;
 };
 
-const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
+const HelpsHeader: React.FC<HelpsHeaderProps> = ({ help }) => {
   return (
     <S.Header>
-      {post.emoji && <S.Emoji>{post.emoji}</S.Emoji>}
+      {/* {post.emoji && <S.Emoji>{help}</S.Emoji>} */}
       <S.Categories>
-        {post.filteredCategories.map((category) => (
-          <S.Category key={category} to={`/posts/${category}`}>
+        {help.categories.map((category) => (
+          <S.Category key={category} to={`/helps/${category}`}>
             {category}
           </S.Category>
         ))}
       </S.Categories>
 
-      <S.Title>{post.title}</S.Title>
+      <S.Title>{help.title}</S.Title>
       {/* <S.Info>{post.date}</S.Info> */}
     </S.Header>
   );
 };
 
-export default PostHeader;
+export default HelpsHeader;

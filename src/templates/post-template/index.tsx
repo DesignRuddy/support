@@ -6,26 +6,26 @@ import PostNavigator from '@/src/components/PostNavigator';
 import Seo from '@/src/components/Seo';
 import Utterances from '@/src/components/Utterances';
 import Layout from '@/src/layout';
-import PostClass from '@/src/models/post';
-import { Post, SiteMetadata } from '@/src/type';
+import { Help, SiteMetadata } from '@/src/type';
 
 import * as S from './styled';
+import HelpsClass from '@/src/models/helps';
 
 type PostTemplateProps = {
   location: Location;
-  data: { prev: Post; next: Post; cur: Post; site: { siteMetadata: SiteMetadata }; markdownRemark: Post };
+  data: { prev: Help; next: Help; cur: Help; site: { siteMetadata: SiteMetadata }; markdownRemark: Help };
 };
 
 const PostTemplate: React.FC<PostTemplateProps> = ({ location, data }) => {
-  const curPost = new PostClass(data.cur);
-  const prevPost = data.prev && new PostClass(data.prev);
-  const nextPost = data.next && new PostClass(data.next);
+  const curPost = new HelpsClass(data.cur);
+  const prevPost = data.prev && new HelpsClass(data.prev);
+  const nextPost = data.next && new HelpsClass(data.next);
   const utterancesRepo = data.site.siteMetadata.comments.utterances.repo;
 
   return (
     <Layout location={location}>
       <Seo title={`소속 고객센터 | ${curPost?.title}`} description={curPost?.excerpt} />
-      <PostHeader post={curPost} />
+      <PostHeader help={curPost} />
 
       <S.PostContent>
         <div className='markdown' dangerouslySetInnerHTML={{ __html: curPost.html }} />

@@ -4,10 +4,10 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import PostCard from '@/src/components/PostCard';
 import Seo from '@/src/components/Seo';
 import Layout from '@/src/layout';
-import PostClass from '@/src/models/post';
 import { AllMarkdownRemark } from '@/src/type';
 
 import * as S from './styled';
+import HelpsClass from '@/src/models/helps';
 
 type PostsTemplateProps = {
   location: Location;
@@ -25,7 +25,7 @@ const PostsTemplate: React.FC<PostsTemplateProps> = ({ location, pageContext }) 
     () => categories.findIndex((category) => category === currentCategory),
     [categories, currentCategory],
   );
-  const posts = edges.map(({ node }) => new PostClass(node));
+  const posts = edges.map(({ node }) => new HelpsClass(node));
 
   /**
    * /posts로 back || categories의 value로 이동
@@ -70,7 +70,7 @@ const PostsTemplate: React.FC<PostsTemplateProps> = ({ location, pageContext }) 
 
         <S.PostCardsWrapper>
           {posts.map((post, index) => (
-            <PostCard key={index} post={post} />
+            <PostCard key={index} item={post} />
           ))}
         </S.PostCardsWrapper>
       </S.TabWrapper>

@@ -23,50 +23,18 @@ type CreatePagesFuncProps = {
   edges: AllMarkdownRemark['edges'];
 };
 
-//포스트s 내용? 전체보기? 모아 보기?
-// const createPosts = ({ createPage, edges }: CreatePagesFuncProps) => {
-//   const posts = path.resolve(`./src/templates/posts-template/index.tsx`);
-//   const categorySet: Set<string> = new Set();
-
-//   const edgesWithMap = edges.map((edge) => {
-//     const { categories } = edge.node.frontmatter;
-//     const categoriesArr = categories.split(' ');
-//     const categoriesMap = categoriesArr.reduce((acc, category) => {
-//       acc[category] = true;
-//       return acc;
-//     }, {} as Record<string, boolean>);
-
-//     return { ...edge, categoriesMap };
-//   });
-
-//   edgesWithMap.forEach((edge) => {
-//     const postCategories = Object.keys(edge.categoriesMap);
-//     postCategories.forEach((category) => {
-//       const categoryName = category.replace('featured-', '').trim();
-//       categorySet.add(categoryName);
-//     });
-//   });
-
-//   const categories = ['전체', ...[...categorySet].sort((a, b) => a.localeCompare(b))];
-
-//   createPage({
-//     path: `/posts`,
-//     component: posts,
-//     context: { currentCategory: '전체', edges, categories },
-//   });
-
-//   categories.forEach((currentCategory) => {
-//     createPage({
-//       path: `/posts/${currentCategory}`,
-//       component: posts,
-//       context: {
-//         currentCategory,
-//         categories,
-//         edges: edgesWithMap.filter((edge) => edge.categoriesMap[currentCategory]),
-//       },
-//     });
-//   });
-// };
+/**
+ * 각 페이지 템플릿별로 페이지 생성
+ */
+const createPagesFromEdges = ({ createPage, edges, template }: CreatePagesFuncProps & { template: string }) => {
+  createPage({
+    path: `/helps`,
+    component: template,
+    context: {
+      edges,
+    },
+  });
+};
 
 
 /**
@@ -89,67 +57,19 @@ const createPost = ({ createPage, edges }: CreatePagesFuncProps) => {
   });
 };
 
-/**
- * helps Page
- */
-const createHelps = ({ createPage, edges }: CreatePagesFuncProps) => {
-  const helps = path.resolve(`./src/templates/helps-template/index.tsx`);
-  const categorySet: Set<string> = new Set();
 
-  const edgesWithMap = edges.map((edge) => {
-    const { categories } = edge.node.frontmatter.;
-    const categoriesArr = categories.split(' ');
-    const categoriesMap = categoriesArr.reduce((acc, category) => {
-      acc[category] = true;
-      return acc;
-    }, {} as Record<string, boolean>);
-
-    return { ...edge, categoriesMap };
-  });
-
-  edgesWithMap.forEach((edge) => {
-    const postCategories = Object.keys(edge.categoriesMap);
-    postCategories.forEach((category) => {
-      const categoryName = category;
-      categorySet.add(categoryName);
-    });
-  });
-
-  const categories = ['전체', ...[...categorySet].sort((a, b) => a.localeCompare(b))];
-
-  createPage({
-    path: `/helps`,
-    component: helps,
-    context: { currentCategory: '전체', edges, categories },
-  });
-
-  categories.forEach((currentCategory) => {
-    createPage({
-      path: `/helps/${currentCategory}`,
-      component: helps,
-      context: {
-        currentCategory,
-        categories,
-        edges: edgesWithMap.filter((edge) => edge.categoriesMap[currentCategory]),
-      },
-    });
-  });
-};
-
-// 페이지에 대한 정의?같은거인듯
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  // Get all markdown blog posts sorted by date
+  // Get all markdown posts
   const result: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     errors?: any;
     data?: {
       allMarkdownRemark: AllMarkdownRemark;
     };
   } = await graphql(`
     {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
+      allMarkdownRemark(limit: 1000) {
         edges {
           node {
             id
@@ -165,16 +85,6 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
               date(formatString: "YYYY.MM.DD")
             }
           }
-          next {
-            fields {
-              slug
-            }
-          }
-          previous {
-            fields {
-              slug
-            }
-          }
         }
       }
     }
@@ -185,38 +95,44 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
     return;
   }
 
-  const filteredEdges = result.data.allMarkdownRemark.edges.map((edge) => {
-    const { categories } = edge.node.frontmatter;
-    const categoriesArr = categories.split(' ');
+  const edges = result.data.allMarkdownRemark.edges;
 
-    const categorySet: Set<string> = new Set();
+  // 각 템플릿 경로
+  const templates = {
+    main: path.resolve(`./src/templates/helps-template/index.tsx`),
+  };
 
-    categoriesArr.forEach((category) => {
-      const categoryName = category.replace('featured-', '').trim();
-      categorySet.add(categoryName);
-    });
+  // 각 디렉토리에 따라 페이지 생성
+  // createPagesFromEdges({
+  //   createPage,
+  //   edges: edges.filter(edge => edge.node.fields.slug.includes('/sosok/')),
+  //   template: templates.main,
+  //   basePath: 'sosok',
+  // });
 
-    return {
-      ...edge,
-      node: {
-        ...edge.node,
-        frontmatter: {
-          ...edge.node.frontmatter,
-          categories: [...categorySet].sort((a, b) => a.localeCompare(b)).join(' '),
-        },
-      },
-    };
+  // createPagesFromEdges({
+  //   createPage,
+  //   edges: edges.filter(edge => edge.node.fields.slug.includes('/business/')),
+  //   template: templates.main,
+  //   basePath: 'business',
+  // });
+
+  // createPagesFromEdges({
+  //   createPage,
+  //   edges: edges.filter(edge => edge.node.fields.slug.includes('/azit/')),
+  //   template: templates.main,
+  //   basePath: 'azit',
+  // });
+  createPagesFromEdges({
+    createPage,
+    edges,
+    template: templates.main,
   });
-
-  // createPosts({ createPage, edges: filteredEdges });
-  createPost({ createPage, edges: filteredEdges });
-  createHelps({ createPage, edges: filteredEdges });
-  // createSearch({ createPage, edges: filteredEdges });
+  createPost({ createPage, edges: edges })
 };
 
 /**
- * Node를 생성하는 구문임
- * @param param0 
+ * Node를 생성하는 구문
  */
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -227,10 +143,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({ node, actions, getNod
   }
 };
 
-
 /**
  * 관리자용 페이지 생성
- * @param param0 
  */
 export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
@@ -240,6 +154,6 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }) => {
     createPage({
       ...page,
       matchPath: "/admin/*"
-    })
+    });
   }
-}
+};
