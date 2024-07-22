@@ -16,13 +16,28 @@ collections:
     path: '{{id}}'
     editor:
       preview: true
-    fields:
-      - { label: 'Id', name: 'id', widget: 'string' }
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Services', name: 'services', widget: 'string' }
-      - { label: 'Categories', name: 'categories', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY.MM.DD' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+    files:
+      - label:
+        name: 'terms'
+        file: 'content/sosok/terms.md'
+        fields:
+          - { label: 'Id', name: 'id', widget: 'string' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Services', name: 'services', widget: 'string' }
+          - { label: 'Categories', name: 'categories', widget: 'string' }
+          - { label: 'Publish Date', name: 'date', widget: 'datetime', format: 'YYYY.MM.DD' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }
+
+      - label:
+        name: 'policy'
+        file: 'content/sosok/policy.md'
+        fields:
+          - { label: 'Id', name: 'id', widget: 'string' }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Services', name: 'services', widget: 'string' }
+          - { label: 'Categories', name: 'categories', widget: 'string' }
+          - { label: 'Publish Date', name: 'date', widget: 'datetime', format: 'YYYY.MM.DD' }
+          - { label: 'Body', name: 'body', widget: 'markdown' }
 
   - name: 'azit'
     label: 'Azit'
@@ -34,13 +49,7 @@ collections:
     path: '{{id}}'
     editor:
       preview: true
-    fields:
-      - { label: 'Id', name: 'id', widget: 'string' }
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Services', name: 'services', widget: 'string' }
-      - { label: 'Categories', name: 'categories', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY.MM.DD' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+   
 
   - name: 'business'
     label: 'Business'
@@ -57,5 +66,5 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Services', name: 'services', widget: 'string' }
       - { label: 'Categories', name: 'categories', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'date', format: 'YYYY.MM.DD' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime', format: 'YYYY.MM.DD' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
