@@ -23,7 +23,7 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({ location, data }) => {
   const helps = data.allMarkdownRemark.edges.map(({ node }) => new HelpsClass(node));
 
-  const { author, projects } = data.site.siteMetadata;
+  const { author } = data.site.siteMetadata;
 
   // allMarkdownRemark.edges의 3개의 게시물을 보여주는?
   // const recentHelps = helps.slice(0, 3);

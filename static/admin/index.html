@@ -24,9 +24,7 @@
                         window.netlifyIdentity.open();
                     });
                     window.netlifyIdentity.on('login', () => {
-                        const isLocalhost = window.location.hostname === 'localhost';
-                        const redirectTo = isLocalhost ? 'http://localhost:8000/admin/' : '/admin/';
-                        document.location.href = redirectTo;
+                        document.location.href = '/admin/';
                     });
                 }
             });
