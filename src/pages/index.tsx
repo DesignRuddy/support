@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import SubBanner from '../components/SubBanner';
 import HeroSection from '../components/HeroSection';
 import HelpsClass from '../models/helps';
+import Products from '../components/Products';
 
 
 type HomeProps = {
@@ -22,7 +23,7 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({ location, data }) => {
   const helps = data.allMarkdownRemark.edges.map(({ node }) => new HelpsClass(node));
 
-  const { author } = data.site.siteMetadata;
+  const { author, projects } = data.site.siteMetadata;
 
   // allMarkdownRemark.edges의 3개의 게시물을 보여주는?
   // const recentHelps = helps.slice(0, 3);
@@ -35,6 +36,8 @@ const Home: React.FC<HomeProps> = ({ location, data }) => {
       <Layout location={location}>
         <HeroSection />
       </Layout>
+
+      {/* <Products projects={projects}/> */}
 
       <Layout>
         <MainBanner author={author} />

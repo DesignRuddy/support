@@ -45,7 +45,7 @@ collections:
     slug: '{{slug}}'
     media_folder: 'assets/images'
     public_folder: 'assets/images'
-    path: '{{id}}'
+    path: '{{id}}' 
     editor:
       preview: true
     files:
@@ -70,7 +70,7 @@ collections:
           - { label: 'Categories', name: 'categories', widget: 'string' }
           - { label: 'Publish Date', name: 'date', widget: 'datetime', format: 'YYYY.MM.DD' }
           - { label: 'Body', name: 'body', widget: 'markdown' }
-          
+
   - name: 'azit'
     label: 'Azit'
     folder: 'content/azit'
