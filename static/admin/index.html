@@ -14,6 +14,7 @@
 <body>
     <!-- <div data-netlify-identity-menu></div>
     <div data-netlify-identity-button>Login with Netlify Identity</div> -->
+    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
     <script>
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on('init', user => {
@@ -22,13 +23,14 @@
                         window.netlifyIdentity.open();
                     });
                     window.netlifyIdentity.on('login', () => {
-                        document.location.href = '/admin/';
+                        const isLocalhost = window.location.hostname === 'localhost';
+                        const redirectTo = isLocalhost ? 'http://localhost:8000/admin/' : '/admin/';
+                        document.location.href = redirectTo;
                     });
                 }
             });
         }
     </script>
-    <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
 </body>
 
 </html>
