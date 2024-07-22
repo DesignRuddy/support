@@ -43,9 +43,9 @@ export default {
   /**
    * definition of featured posts
    */
-  products: [
+  featured: [
     {
-      title: '소속',
+      title: '소속 APP',
       category: 'featured-sosok',
     },
     {
@@ -53,7 +53,7 @@ export default {
       category: 'featured-business',
     },
     {
-      title: '아지트',
+      title: '소속 아지트',
       category: 'featured-azit',
     },
   ],
