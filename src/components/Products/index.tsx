@@ -27,7 +27,7 @@ const Products: React.FC<ProductsProps> = ({
     <S.Wrapper>
       <S.Content>
         <S.Tabs>
-          {[projects].map((tab) => (
+          {['소속', '비즈니스', '아지트'].map((tab) => (
             <S.Tab key={tab} isSelected={selectedTab === tab} onClick={() => handleTabClick(tab)}>
               {tab}
             </S.Tab>
@@ -37,7 +37,7 @@ const Products: React.FC<ProductsProps> = ({
         <S.ServicesGrid>
           {Array.from({ length: 10 }, (_, index) => (
             <S.ServiceCard key={index}>
-              <img src="https://via.placeholder.com/50" alt="Service" />
+              {/* <img src="https://via.placeholder.com/50" alt="Service" /> */}
               <p>Service {index + 1}</p>
             </S.ServiceCard>
           ))}

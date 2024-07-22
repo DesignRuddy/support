@@ -43,15 +43,18 @@ export default {
   /**
    * definition of featured posts
    */
-  projects: [
+  products: [
     {
       title: '소속',
+      category: 'featured-sosok',
     },
     {
-      title: '비즈니스',
+      title: '소속 비즈니스',
+      category: 'featured-business',
     },
     {
       title: '아지트',
+      category: 'featured-azit',
     },
   ],
 
@@ -88,21 +91,21 @@ export default {
   /**
    * metadata for Playground Page
    */
-  // projects: [
-  //   {
-  //     title: 'Portfolio',
-  //     description: '포트폴리오',
-  //     techStack: ['React', 'Next.js', 'Typescript'],
-  //     thumbnailUrl: '', // Path to your in the 'assets' folder
-  //     links: {
-  //       post: '',
-  //       github: '',
-  //       demo: '',
-  //       googlePlay: '',
-  //       appStore: '',
-  //     },
-  //   },
-  // ],
+  projects: [
+    {
+      title: 'Portfolio',
+      description: '포트폴리오',
+      techStack: ['React', 'Next.js', 'Typescript'],
+      thumbnailUrl: '', // Path to your in the 'assets' folder
+      links: {
+        post: '',
+        github: '',
+        demo: '',
+        googlePlay: '',
+        appStore: '',
+      },
+    },
+  ],
 
   /**
    * metadata for Buy Me A Coffee
