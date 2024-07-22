@@ -17,7 +17,7 @@ collections:
     editor:
       preview: true
     files:
-      - label:
+      - label: 'Terms'
         name: 'terms'
         file: 'content/sosok/terms.md'
         fields:
@@ -28,7 +28,7 @@ collections:
           - { label: 'Publish Date', name: 'date', widget: 'datetime', format: 'YYYY.MM.DD' }
           - { label: 'Body', name: 'body', widget: 'markdown' }
 
-      - label:
+      - label: 'Policy'
         name: 'policy'
         file: 'content/sosok/policy.md'
         fields:
