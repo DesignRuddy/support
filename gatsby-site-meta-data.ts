@@ -13,7 +13,7 @@ export default {
    */
   comments: {
     utterances: {
-      repo: ``, 
+      repo: `/DesignRuddy/support`, 
     },
   },
 

@@ -9,6 +9,13 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({ get
 
   actions.setWebpackConfig({
     output,
+    // cache: {
+    //   type: 'filesystem',
+    //   buildDependencies: {
+    //     config : [__filename],
+    //   }
+    // },
+    cache:false,
     resolve: {
       alias: {
         '@/src': path.resolve(__dirname, 'src/'),
